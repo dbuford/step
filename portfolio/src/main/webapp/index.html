@@ -7,6 +7,7 @@
     <script src="script.js"></script>
 
     <style>
+
         /*style the header*/
         header{
             background-color:Black;
@@ -14,13 +15,11 @@
             text-align:center;
             font-size: 35px;
             color:White;
+        }
 
-        }
         /*style the body*/
-        body
-        {
-            background-color:AliceBlue;
-        }
+        body {background-color:AliceBlue;}
+
         /*style for the a tag*/
         a{
             text-decoration:none;
@@ -34,38 +33,30 @@
             border-bottom-color: black;
             background-color:Purple;
             padding:10px;
-
         }
-        
-        /*create two columns next to each other*/
+        /*style two columns next to each other*/
         nav{
             float:left;
             width:16%;
             background-color:AliceBlue;
-            padding:5px;
-            
+            padding:5px;  
         }  
+        article{
+            float:left;
+            width:80.5%;
+            padding:20px;
+            background-color:AliceBlue;
+        }
         /*style the list in the nav menu*/
         nav ul {
              list-style-type: none;
              padding:0;
              font-family: Arial, sans-serif;
             font-size: medium;
-            font-weight: bold;
-            
-            
+            font-weight: bold; 
         }
-        article{
-            float:left;
-            width:80.5%;
-            padding:20px;
-            background-color:AliceBlue;
-
-        }
-
-
         /*float the image*/
-        img{
+        img {
             float:left;
         }
         /*style the divider*/
@@ -75,40 +66,35 @@
         height:40px;
         border: 15px black;
         margin: 20px;
-}
+        }
         /*change color of active tab*/
-        .active
-        {
+        .active {
             background-color:Plum;
         }
         /*change color of tab hovered over*/
-        a:hover
-        {
+        a:hover {
             background-color:LightPink;
         }
-
         /* Clear floats after the columns */
-        section:after 
-        {
+        section:after {
             content: "";
             display: table;
             clear: both;
         }
          /*style the footer*/
-         footer 
-         {
+         footer {
              background-color: Black;
              padding: 10px;
              color: White;
              text-align:center;
-         }
-
+        }
     </style>
   </head>
   <body>
       <header>
       <h2>Dominique's Portfolio</h2>
      </header>
+
 <section>
       <nav>
           <ul>
@@ -122,24 +108,17 @@
       <article>
           <h3> All About Me!</h3>
           <p> Hi, my name is Dominique Buford. I am from Dallas, Texas, I'm a sophomore at Duke University, and I plan
-               to major in Computer Science. At Duke, I am a member of the Baldwin Scholars Program and the MireCourt Selective
-               Living Group. I've grown up always watching sports with my dad, so, of course, my favorite part of Duke 
-               is attending the Duke Men's and Women's Basketball games. <br><br>
-            I am also very close with my family and I love spending time with them! My family includes my mom, my dad,
-             my two sisters, Brianna and Cortney, and my two dogs, T.J. and Bella. Recently, we have enjoyed participating
-             in "Quarantine Olympics", which consists of a series of At-Home Challenges. 
-              
-              
-          </p>
-        <br>
+              to major in Computer Science. At Duke, I am a member of the Baldwin Scholars Program and the MireCourt Selective
+              Living Group. I've grown up always watching sports with my dad, so, of course, my favorite part of Duke 
+              is attending the Duke Men's and Women's Basketball games. <br><br>
+              I am also very close with my family and I love spending time with them! My family includes my mom, my dad,
+              my two sisters, Brianna and Cortney, and my two dogs, T.J. and Bella. Recently, we have enjoyed participating
+              in "Quarantine Olympics", which consists of a series of At-Home Challenges. </p> <br>
           <img src="/images/pic_of_fam.jpg" alt="Picture of my Family" width="410" height="500">
           <img src="/images/pic_of_me.jpg" alt="Picture of Me"width="400" height="500">
           <img src="/images/pic_of_duke.jpg" alt="Picture of Duke Chapel" width="410" height= "500">
-
-          <div>   </div>
-          <div>  </div>
             
-            <h3> Why Computer Science? </h3>
+          <h3> Why Computer Science? </h3>
           <p> Ever since I can remember, I have always been interested in learning how 
               things around us function. From my favorite Robot Puppy toy to more advanced items like the television,
               everything seemed to peak my interest and curiosity. As my involvement with technology increased, 
@@ -149,32 +128,24 @@
               around us. Fortunately, since technology continues to rapidly evovle before our very eyes,
               there is always so many new things to learn. In order to continue to build upon my current coding 
               knowledge,this summer, I have the opportunity to be apart of Google's STEP, Student Training in 
-              Engineering Program, internship. 
-          </p>
+              Engineering Program, internship. </p>
 
           <div>  </div>
 
           <h3> Learn More About Me</h3>
           <p> To find out more about me, please click on the buttons below or click on the links to the left of this 
-              page!
-          </p>
-
+              page!</p>
           <button onclick="document.location='favorite_things.html'"> My Favorite Things </button>
           <button onclick="document.location='what_i_enjoy.html'"> Current Hobbies</button>
           <!--figure out exactly what this Interactive piece will be-->
-
           <button onclick="document.location='interactive.html'"> Interactive Piece</button>
 
-        
       </article>
       </section>
-      
-
+    
       <footer>
           <p> Author: Dominique Buford </p>
       </footer>
-
-        
 
   </body>
 </html>
