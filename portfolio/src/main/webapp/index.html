@@ -22,7 +22,9 @@
         }
 
         /*style the body*/
-        body {background-color:AliceBlue;}
+        body {background-color:AliceBlue;
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+        }
 
         /*style for the a tag*/
         a{
@@ -40,13 +42,14 @@
         }
         /*style two columns next to each other*/
         nav{
-            float:left;
-            width:16%;
+            position:fixed;
+            width:15%;
             background-color:AliceBlue;
             padding:5px;  
+            height:900px;
         }  
         article{
-            float:left;
+            padding-left:300px;
             width:80.5%;
             padding:20px;
             background-color:AliceBlue;
@@ -90,21 +93,20 @@
         p{
             font-size:20px;
         }
-         /*style the footer*/
-         footer {
-             background-color: Black;
-             padding: 10px;
-             color: White;
-             text-align:center;
-        }
+    /*style the main part of the page*/
+        main {
+            background:AliceBlue;
+            height:1200px;
+        padding-left:255px;
+}
         
     </style>
   </head>
-  <main>
+  <header>
     <div class="header-img">
 <h1>Dominique's Portfolio</h1>
     </div>  
-</main>
+</header>
   <body>
 
 <section>
@@ -117,8 +119,8 @@
           </ul>  
       </nav>
 
-      <article>
-          <h2> All About Me!</h2>
+      <main>
+          <h2> About Me</h2>
           <p> Hi, my name is Dominique Buford. I am from Dallas, Texas, I'm a sophomore at Duke University, and I plan
               to major in Computer Science. At Duke, I am a member of the Baldwin Scholars Program and the MireCourt Selective
               Living Group. I've grown up always watching sports with my dad, so, of course, my favorite part of Duke 
@@ -152,12 +154,9 @@
           <!--figure out exactly what this Interactive piece will be-->
           <button onclick="document.location='interactive.html'"> Interactive Piece</button>
 
-      </article>
+      </main>
       </section>
     
-      <footer>
-          <p> Author: Dominique Buford </p>
-      </footer>
 
   </body>
 </html>
