@@ -7,118 +7,74 @@
     <script src="script.js"></script>
 
     <style>
-        /*style the header*/
-        .header-img {
-            width: 100%;
-            height: 140px;
-            background: Black;
-            background-size: cover;
-        }
-        h1{
-            color:White;
-            padding:20px;
-            text-align:center;
-            font-size:80px;
-        }
-
+        
         /*style the body*/
-        body {background-color:AliceBlue;
-        overflow-x: hidden; /* Hide horizontal scrollbar */
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+       /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+        }
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .topnav a:hover {
+            background-color: DarkBlue;
+            color: White;
         }
 
-        /*style for the a tag*/
-        a{
-            text-decoration:none;
-            color:White;
-            display:block;
-            text-align:center;
-            font-size:15px;
-            width:200px;
-            height:20px;
-            border-bottom-style: solid;
-            border-bottom-color: black;
-            background-color:Purple;
-            padding:10px;
-        }
-        /*style two columns next to each other*/
-        nav{
-            position:fixed;
-            width:15%;
-            background-color:AliceBlue;
-            padding:5px;  
-            height:900px;
-        }  
-        article{
-            padding-left:300px;
-            width:80.5%;
-            padding:20px;
-            background-color:AliceBlue;
-        }
-        /*style the list in the nav menu*/
-        nav ul {
-             list-style-type: none;
-             padding:0;
-             font-family: Arial, sans-serif;
-            font-size: medium;
-            font-weight: bold; 
-        }
+        .topnav a.active {
+        background-color: LightBlue;
+        color: white;
+        }   
+    
         /*float the image*/
         img {
             float:left;
             margin-bottom:30px;
         }
-        /*style the divider*/
+        /*style the divider
         div {
         background-color: AliceBlue;
         width: 250px;
         height:40px;
         border: 15px black;
         margin: 20px;
-        }
-        /*change color of active tab*/
-        .active {
-            background-color:Plum;
-        }
-        /*change color of tab hovered over*/
-        a:hover {
-            background-color:LightPink;
-        }
-        /* Clear floats after the columns */
-        section:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+        }*/
+        
+       
         /*style the paragraph*/
         p{
             font-size:20px;
         }
-    /*style the main part of the page*/
+    /*style the main part of the page
         main {
             background:AliceBlue;
             height:1200px;
-        padding-left:255px;
-}
+            padding-left:255px;
+        }*/
         
     </style>
-  </head>
-  <header>
-    <div class="header-img">
-<h1>Dominique's Portfolio</h1>
-    </div>  
-</header>
-  <body>
+    </head>
+  
+  
+    <body>
 
-<section>
-      <nav>
-          <ul>
-              <li><a class="active" href="index.html"> Home </a></li><br>
-              <li><a href="favorite_things.html">My Favorite Things</a></li><br>
-              <li><a href="what_i_enjoy.html">What I Enjoy</a></li><br>
-              <li><a href="interactive.html">Something Fun</a></li>
-          </ul>  
-      </nav>
-
+        <div class="topnav">
+            <a class="active" href="index.html"> Home </a>
+            <a href="favorite_things.html">My Favorite Things</a>
+            <a href="what_i_enjoy.html">What I Enjoy</a>
+            <a href="interactive.html">Something Fun</a>
+        </div>  
+      
       <main>
           <h2> About Me</h2>
           <p> Hi, my name is Dominique Buford. I am from Dallas, Texas, I'm a sophomore at Duke University, and I plan
@@ -139,7 +95,7 @@
               I became even more interested on how it all worked. More importantly, I wanted to know how I, myself, 
               could create something of my own with technology. <br> <br>I believe that coding is a unique way to combine 
               technology and creativity to produce amazing and useful projects that can impact the world
-              around us. Fortunately, since technology continues to rapidly evovle before our very eyes,
+              around us. Fortunately, since technology continues to rapidly evolve before our very eyes,
               there is always so many new things to learn. In order to continue to build upon my current coding 
               knowledge,this summer, I have the opportunity to be apart of Google's STEP, Student Training in 
               Engineering Program, internship. </p>
