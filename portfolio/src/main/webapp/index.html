@@ -9,20 +9,19 @@
     <style>
         
         /*style the body*/
-        html{width:100%}
         body {
             width:100%
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
             background:url(/images/background3.jpg);
             background-size:cover;
-            
         }
        /*style horizontal nav bar*/
         .topnav {
             overflow: hidden;
             background-color: White;
         }
+        /*style links in nav bar*/
         .topnav a {
             float: left;
             color: Black;
@@ -31,16 +30,16 @@
             text-decoration: none;
             font-size: 17px;
         }
+        /*change color of link when hovered on*/
         .topnav a:hover {
             background-color: LightPink;
             color: White;
         }
-
+        /*style active link in navbar*/
         .topnav a.active {
         background-color: LightBlue;
         color: white;
         }   
-    
         /*float the image*/
         img {
             margin:auto;
@@ -54,39 +53,32 @@
         }
         /*style the divider*/
         div {
-margin:0 auto; /*this will cause the div to be in the center*/
-
-position:absolute;
-  margin: auto;
-  top: 0;
-  right: 45%;
-  bottom: 30%;
-  left: 0;
-  width: 300px;
-  height: 200px;*/
-
-        border: 15px black;
-        
+            margin:0 auto; /*this will cause the div to be in the center*/
+            position:absolute;
+            margin: auto;
+            top: 0;
+            right: 45%;
+            bottom: 30%;
+            left: 0;
+            width: 300px;
+            height: 200px;*/
+            border: 15px black;
         }
-        
-       
         /*style the preformatted text*/
         pre{
             font-size:15px;
-            
             font-family: Arial, Helvetica, sans-serif;
         }
-
 
     </style>
     </head>
 
-    <body>
+        <body>
 
         <nav class="topnav">
             <a class="active" href="index.html"> Home </a>
-            <a href="favorite_things.html">My Favorite Things</a>
-            <a href="what_i_enjoy.html">What I Enjoy</a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
             <a href="interactive.html">Something Fun</a>
         </nav>  
       
@@ -113,9 +105,5 @@ position:absolute;
 
             <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=450px height=450px>
 
-      
-     
-    
-
-  </body>
+    </body>
 </html>
