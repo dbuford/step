@@ -35,6 +35,11 @@
         header{
             text-align:center;
         }
+        /*style the divider*/
+        div{
+            width:100%;
+            height:50%;
+        }
         </style>
       </head>
 
@@ -45,6 +50,7 @@
             <a href="what_i_enjoy.html">Hobbies and Interests</a>
             <a class="active" href="interactive.html">Something Fun</a>
         </nav>
+       <div>
         <header>
             <h1> Quiz Time!</h1>
         </header>
@@ -55,6 +61,17 @@
         <button type="button" id="button4" onclick="WrongFunction()"> 5 </button>
 
         <p id="guess"> Guess the Answer! Good Luck</p>
+
+        </div>
+        <div>
+            <h1> Who Doesn't Love to Dance?!</h1>
+            <button type="button" onclick="DanceOff()"> Dance Off</button>
+            <button type="button" onclick="DanceOn()"> Dance On </button>
+            <img id="picture1" src="/images/dance1_off.jpg" alt="Dance 1_off" width="200" height="200">
+            <img id="picture2" src="/images/dance2_off.jpg" alt="Dance 2_off" width="200" height="200">
+            <img id="picture3" src="/images/dance3_off.jpg" alt="Dance 3_off" width="200" height="200">
+
+        </div>
 
         <script>
             var questions=["What Grade Was I First Introduced to Code", "Opinion: Strongest Avenger",
@@ -91,12 +108,29 @@
                         document.getElementById("guess").innerHTML="Quiz Complete! Great Job"
                         hide();
                     }
+            }
             function hide() {
                 first_button.style.display = 'none';
                 second_button.style.display = 'none';
                 third_button.style.display = 'none';
                 fourth_button.style.display = 'none';
-                }        
-            }
-        
+                }   
+
+            function DanceOff(){
+                var image_off_1 = document.getElementById("picture1");
+                image_off_1.src = "/images/dance1_off.jpg";
+                var image_off_2 = document.getElementById('picture2');
+                image_off_2.src = "/images/dance2_off.jpg";
+                var image_off_3 = document.getElementById('picture3');
+                image_off_3.src = "/images/dance3_off.jpg";
+            }    
+            function DanceOn(){
+                var image_on_1=document.getElementById('picture1');
+                document.getElementById("picture1").src="/images/dance1.gif";
+                var image_on_2=document.getElementById('picture2');
+                image_on_2.src="/images/dancetwo.gif";
+                var image_on_3=document.getElementById('picture3');
+                image_on_3.src="/images/dance3.gif";
+            }   
+         
         </script>
