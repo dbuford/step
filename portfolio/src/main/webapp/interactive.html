@@ -44,4 +44,54 @@
             <a href="favorite_things.html">Favorite Things</a>
             <a href="what_i_enjoy.html">Hobbies and Interests</a>
             <a class="active" href="interactive.html">Something Fun</a>
-        </nav>     
+        </nav>
+        <header>
+            <h2> Interactive Quiz!</h2>
+        </header>
+        <p id="question"> Question 1: How Many Schools Have I Attended?</p>
+        <button type="button"  id="button1" onclick="WrongFunction()"> 3 </button>
+        <button type="button" id="button2" onclick="RightFunction()"> 8 </button>
+        <button type="button" id="button3" onclick="WrongFunction()"> 12 </button>
+        <button type="button" id="button4" onclick="WrongFunction()"> 5 </button>
+
+        <p id="guess"> Guess the Answer! Good Luck</p>
+
+        <script>
+            var questions=["What Grade Was I First Introduced to Code", "Opinion: Strongest Avenger",
+            "My Preferred Hogwarts House"];
+
+            var button1=["7th Grade","Spider-Man", "Gryffindor" ];
+            var button2=["9th Grade", "Scarlet Witch", "Ravenclaw"];
+            var button3=["Freshman Year of College", "Thor", "Slytherin"];
+            var button4=["11th Grade", "Doctor Strange", "Hufflepuff"];
+
+
+            var count=0;
+
+            function WrongFunction(){
+                document.getElementById("guess").innerHTML="Not Quite! Try Again";
+            }
+
+            function RightFunction(){
+                    document.getElementById("guess").innerHTML="Correct! Next Question";
+                    document.getElementById("question").innerHTML= questions[count];
+            
+                    var first_button=document.getElementById("button1");
+                    first_button.innerHTML=button1[count];
+
+                    var second_button=document.getElementById("button2");
+                    second_button.innerHTML=button2[count];
+
+                    var third_button=document.getElementById("button3");
+                    third_button.innerHTML=button3[count];
+
+                    var fourth_button=document.getElementById("button4");
+                    fourth_button.innerHTML=button4[count];
+
+                    count++;
+                    if(count>3){
+                        document.getElementById("guess").innerHTML="Quiz Complete! Great Job"
+                    }
+            }
+        
+        </script>
