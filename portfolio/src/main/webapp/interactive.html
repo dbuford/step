@@ -46,7 +46,7 @@
             <a class="active" href="interactive.html">Something Fun</a>
         </nav>
         <header>
-            <h2> Interactive Quiz!</h2>
+            <h1> Quiz Time!</h1>
         </header>
         <p id="question"> Question 1: How Many Schools Have I Attended?</p>
         <button type="button"  id="button1" onclick="WrongFunction()"> 3 </button>
@@ -58,14 +58,12 @@
 
         <script>
             var questions=["What Grade Was I First Introduced to Code", "Opinion: Strongest Avenger",
-            "My Preferred Hogwarts House"];
+            "My Preferred Hogwarts House", ""];
 
             var button1=["7th Grade","Spider-Man", "Gryffindor" ];
             var button2=["9th Grade", "Scarlet Witch", "Ravenclaw"];
             var button3=["Freshman Year of College", "Thor", "Slytherin"];
             var button4=["11th Grade", "Doctor Strange", "Hufflepuff"];
-
-
             var count=0;
 
             function WrongFunction(){
@@ -91,7 +89,14 @@
                     count++;
                     if(count>3){
                         document.getElementById("guess").innerHTML="Quiz Complete! Great Job"
+                        hide();
                     }
+            function hide() {
+                first_button.style.display = 'none';
+                second_button.style.display = 'none';
+                third_button.style.display = 'none';
+                fourth_button.style.display = 'none';
+                }        
             }
         
         </script>
