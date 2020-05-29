@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <style>
+/*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+        }
+        /*style links in the navbar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*change color of link hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+        }
+        /*change color of active link*/
+        .topnav a.active {
+            background-color: LightBlue;
+            color: white;
+        /*style top header*/
+        header{
+            text-align:center;
+        }
+        </style>
+      </head>
+
+        <body>
+        <nav class="topnav">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a class="active" href="interactive.html">Something Fun</a>
+        </nav>     
