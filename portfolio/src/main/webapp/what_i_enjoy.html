@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <style>
+        /*style body of page*/
+        body{
+            background-color:White;
+            }
+        /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in the navbar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+                  }
+        /*change color of link hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*change color of active link*/
+        .topnav a.active {
+            background-color: LightBlue;
+            color: white;
+                         }  
+        /*Set additional styling options for the columns */
+        .column {
+            float: left;
+                }
+        /* Set width length for the first, second, and third columns */
+        .first {
+            width: 100%;
+            text-size:1px;
+            color:#EEDEDB;
+               }
+
+        .second {
+            width: 100%;
+            text-size:1px;
+            color:#ECDBEE;
+                }
+    
+        .third {
+            width: 100%;
+            text-size:1px;
+            color:#DBEDEE;
+               } 
+        /*style the p font*/
+        p{
+            font-size:20px;
+            color:Black;
+         }
+        /*style the main section*/
+        main {
+            float:left;
+            display:inline;
+            width:50%
+             }
+        /*style the image section*/
+        image-box{
+            float:left;
+            display:inline;
+            width:30%
+            padding-top:20px;
+                 }
+        /*style the img and create space between them*/
+        img{
+            padding:30px;
+            float:left;
+            border-radius:25%;
+           }
+        /*change font color of h2 header*/
+        h2{
+            color:Black;
+          }
+        /*change h1 header font color and size*/
+        h1{
+            color:White;
+            font-size:60px;
+          }
+        /*style top header*/
+        header{
+            text-align:center;
+            background-color:#EEDEDB;
+            padding:20px;
+              }
+    </style>
+    </head>
+
+    
+    <nav class="topnav">
+        <a href="index.html"> Home </a>
+        <a href="favorite_things.html">Favorite Things</a>
+        <a class="active" href="what_i_enjoy.html">Hobbies and Interests</a>
+        <a href="interactive.html">Something Fun</a>
+    </nav> 
+
+    <body>
+    <header>
+        <h1> Hobbies and Interests</h1>
+        <div class="row">
+        <div class="column first" style="background-color:#EEDEDB;">
+        text  
+        </div>
+        <div class="column second" style="background-color:#ECDBEE;">
+            text
+        </div>
+        <div class="column third" style="background-color:#DBEDEE;">
+            text
+        </div>
+    </header>
+
+    <main>   
+        <br><h2>Painting and Drawing</h2>
+        <p>  Recently, I have discovered an interest in creative painting and drawing. I find it <br>
+             incredibly relaxing to just sit down and paint or draw. Specifically during quarantine,<br>
+             I have started to paint a series titled "Black Women in Color" in which I depict an element<br>
+             or elements of black women using lots of bright colors. In addition to this, I have also <br>
+             decided to try my hand in painting shoes. I believe my first pair turned out really well,<br>
+             and I am excited to try even more</p>
+        
+         <div class="row">
+        <div class="column first" style="background-color:#EEDEDB">
+            text
+        </div>
+
+        <br><h2>Watching and Studying Television and Film</h2>
+        <p> Over the years, I have watched several films and television series of different genres, my<br>
+            favorite being comedy, documentary, action, science-fiction, and thriller. However, for me,<br>
+            I'm not just simply watching for entertainment. Rather, I watch for both entertainment as <br>
+            well as to study the different elements of the film or series like camera angles, costume,<br>
+            set design, and, of course, special effects. I hope to one day be a part of the technical<br>
+            side of the film industry.</p>
+             
+        <div class="row">
+        <div class="column second" style="background-color:#ECDBEE">
+            text
+        </div>
+    
+        <br><h2>Spending Time with Family</h2>
+        <p> Fortunately, I am very close with my family and I love spending time with them, especially<br>
+            now during quarantine when I cannot see any of my friends. We will watch movies together,<br>
+            do game night, go on walks with our dogs, and I love every minute.<br></p>
+            
+        <div class="column third" style="background-color:#DBEDEE;">
+        text
+        </div> 
+
+        <br><h2> Activism </h2> 
+        <p> Ever since my first march and protest, I have seen just how import grass-roots activism is. <br>
+            Starting my freshman year of highschool, I have worked to get involve, both at my school<br> and in 
+            my community to foster a community of change. I have seen first hand racism,<br> sexism, classism, 
+            xenephobia, and more, and I want to do my part to combat these systemic issues.</p>
+
+        <div class="row">
+        <div class="column first" style="background-color:#EEDEDB">
+            text
+        </div> 
+
+        <br><h2> Coding </h2>
+        <p> I love to use code to write, create, and do different things on my laptop. So far in college, I am<br>
+        enjoying learning so much about Computer Science. So far, I've learned Python and Java coding languages
+        and I am currently working with HTML and JavaScript for this project.<br> Throughout this summer, I hope to
+        learn even more!</p>
+    </main>
+
+    <image-box>
+        <img src="/images/blackgirl.jpg" alt= "Picture of My Painting" width="300" height="300">
+        <img src="/images/shoes.jpg" alt="Picture of My Shoes" width="300" height="300">
+    </image-box>
+    <image-box>
+        <img src="/images/film.jpg" alt="Picture of Film" width="300" height="300">
+        <img src= "/images/dog1.jpg" alt= "Picture of TJ" width="300" height="300">
+    </image-box>
+    <image-box>
+        <img src= "/images/dog2.jpg" alt="Picture of Bella" width="300" height="300">
+        <img src= "/images/pic_of_fam.jpg" alt="Picture of My Family" width="300" height="300">
+    </image-box>
+    
+  </body>
+</html>
+
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <style>
+        /*style the header*/
+        header{
+            text-align:center;
+            font-size:60px;
+            background-image:url(/images/interactive.gif);
+            color:White;
+            padding-top:30px;
+            padding-bottom:30px;
+            background-size:contain;
+              }
+        /*create space between each image*/
+        img{
+            padding:40px;
+           }
+        /*style h1 header*/
+        h1{
+            color:Purple;
+            text-align:center;
+            background-color:AliceBlue;
+          }
+        /*create border around h1 header*/
+        h1.inset{
+            border-style:inset;
+            border-color:  Magenta Aqua DodgerBlue;
+        }
+        /*style the size and color of the button*/
+        button{
+            background-color:White;
+            color:Black;
+            text-align:center;
+            padding: 15px 32px;
+            width:10%;
+              }
+        /*change size of p text*/
+        p{
+            font-size:20px;
+         }
+        /*style the color of the body*/
+        body{
+            background-color:White;
+            }
+        /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in the navbar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+                  }
+        /*change color of link hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*change color of active link*/
+        .topnav a.active {
+            background-color: LightBlue;
+            color: white;
+                        }
+        div{
+            width:100%;
+           }
+
+    </style>
+    </head>
+
+    <body>
+        <nav class="topnav">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a class="active" href="interactive.html">Something Fun</a>
+        </nav>
+       <div>
+        <header>
+            <h2> Interactive Piece</h2>
+         </header>    
+            <h1 class="inset"> Quiz Time!</h1>
+       
+        <p id="question"><b> Question 1: How Many Schools Have I Attended?<b></p>
+        <p id="guess"><b> Guess the Answer! Good Luck</b></p>
+        <button type="button"  id="button1" onclick="WrongFunction()"> 3 </button>
+        <button type="button" id="button2" onclick="RightFunction()"> 8 </button>
+        <button type="button" id="button3" onclick="WrongFunction()"> 12 </button>
+        <button type="button" id="button4" onclick="WrongFunction()"> 5 </button>
+        </div>
+        <div>
+            <h1 class="inset"> Time to Dance!</h1>
+            <button type="button" onclick="DanceOff()"> Dance Off</button>
+            <button type="button" onclick="DanceOn()"> Dance On </button>
+        </div><br>
+        <div>
+            <img id="picture1" src="/images/dance1_off.jpg" alt="Dance 1_off" width="400" height="400">
+            <img id="picture2" src="/images/dance2_off.jpg" alt="Dance 2_off" width="400" height="400">
+            <img id="picture3" src="/images/dance3_off.jpg" alt="Dance 3_off" width="400" height="400">
+        </div>
+    </body>
+</html>
+
+        <script>
+            var questions=["Question 2: What Grade Was I First Introduced to Code", "Question 3: Opinion: Who is the Strongest Avenger","Question 4: My Preferred Hogwarts House", ""];
+            var button1=["7th Grade","Spider-Man", "Gryffindor" ];
+            var button2=["9th Grade", "Scarlet Witch", "Ravenclaw"];
+            var button3=["Freshman Year of College", "Thor", "Slytherin"];
+            var button4=["11th Grade", "Doctor Strange", "Hufflepuff"];
+            var count=0;
+
+            function WrongFunction(){
+                document.getElementById("guess").innerHTML="Not Quite! Try Again";
+                                    }
+
+            function RightFunction(){
+                    document.getElementById("guess").innerHTML="Correct! Next Question";
+                    document.getElementById("question").innerHTML= questions[count];
+            
+                    var first_button=document.getElementById("button1");
+                    first_button.innerHTML=button1[count];
+
+                    var second_button=document.getElementById("button2");
+                    second_button.innerHTML=button2[count];
+
+                    var third_button=document.getElementById("button3");
+                    third_button.innerHTML=button3[count];
+
+                    var fourth_button=document.getElementById("button4");
+                    fourth_button.innerHTML=button4[count];
+
+                    count++;
+                    if(count>3){
+                        document.getElementById("guess").innerHTML="Quiz Complete! Great Job";
+                        first_button.style.display = 'none';
+                        second_button.style.display = 'none';
+                        third_button.style.display = 'none';
+                        fourth_button.style.display = 'none';
+                              }
+                    }
+
+            function DanceOff(){
+                var image_off_1 = document.getElementById("picture1");
+                image_off_1.src = "/images/dance1_off.jpg";
+                var image_off_2 = document.getElementById('picture2');
+                image_off_2.src = "/images/dance2_off.jpg";
+                var image_off_3 = document.getElementById('picture3');
+                image_off_3.src = "/images/dance3_off.jpg";
+                               }    
+            function DanceOn(){
+                var image_on_1=document.getElementById('picture1');
+                document.getElementById("picture1").src="/images/dance1.gif";
+                var image_on_2=document.getElementById('picture2');
+                image_on_2.src="/images/dancetwo.gif";
+                var image_on_3=document.getElementById('picture3');
+                image_on_3.src="/images/dance3.gif";
+                              }   
+         
+        </script>
+        
+
