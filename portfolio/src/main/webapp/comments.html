@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <style>
+        /*style the body*/
+        body {
+            width:100%
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background:url(/images/pineapple.jpg);
+            background-size:cover;
+             }
+       /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in nav bar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+                  }
+        /*change color of link when hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*style active link in navbar*/
+        .topnav a.active {
+        background-color: LightBlue;
+        color: white;
+                         }   
+     </style>
+    </head>
+
+    <body>
+
+        <nav class="topnav">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a href="interactive.html">Interactive</a>
+            <a class="active" href="comments.html"> Comments</a>
+        </nav>  
+                           
+ 
+ <p>Click here to see data:</p>
+            <button onclick="getData()">fetch the data!</button>
+            <div id="data-container"></div>
+
+        </body>
+</html>     
