@@ -32,26 +32,15 @@ fetches data from the server
 function getData(){
     console.log('Currently getting data');
 
-    const responsePromise=fetch('/data');
+        fetch('/data').then(response => response.json()).then((myData)=> {
+        console.log(myData);
 
-    responsePromise.then (handleData);
+        const dataContainer = document.getElementById('data-container');
+        dataContainer.innerHTML=myData.toString();
+        
+    });
+
 }
-/**
-handles data by converting it into text, pass
-result to displayData() function
- */
-function handleData(data){
 
-    const textPromise= data.text();
 
-    textPromise.then(displayData);
-}
-/**
-adds data to the DOM*/
-function displayData(data){
-    console.log('Adding quote to dom: ' + data);
-
-    const dataContainer = document.getElementById('data-container');
-    dataContainer.innerText = data;
-}
 
