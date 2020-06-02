@@ -15,6 +15,9 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,12 +34,19 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
 
+    //create instance of DatastoreService to store entity
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("title", text);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    datastore.put(commentEntity);
+
+
     // Break the text into individual words.
     String[] words = text.split("\\s*,\\s*");
 
-
     // Respond with the result.
-
     response.setContentType("text/html;");
     response.getWriter().println("Hi "+ words[0]+ " ! My name is Dominique, and welcome to my Portfolio");
 }
