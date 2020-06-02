@@ -29,18 +29,28 @@ function addRandomGreeting() {
 /**
 fetches data from the server
  */
-function getData(){
-    console.log('Currently getting data');
+function getComments(){
+      fetch('/data').then(response => response.json()).then((comments) => {
+          const displayComments = document.getElementById('comments-list');
+          comments.forEach((comment) => {
+        displayComments.appendChild(createCommentElement(comment));
+    })
 
-        fetch('/data').then(response => response.json()).then((myData)=> {
-        console.log(myData);
-
-        const dataContainer = document.getElementById('data-container');
-        dataContainer.innerHTML=myData.toString();
-        
-    });
-
+});
 }
+/** Creates an element that represents a task, including its delete button. */
+function createCommentElement(comment) {
+  const commentElement = document.createElement('li');
+  commentElement.innerText = comment;
+  return commentElement;
+}
+
+
+
+
+
+
+
 
 
 

@@ -40,34 +40,42 @@ public class DataServlet extends HttpServlet {
     String text = getParameter(request, "text-input", "");
     long timestamp = System.currentTimeMillis();
 
+
     // Break the text into individual words.
     String[] words = text.split("\\s*,\\s*");
 
-    // Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");
-
-    //create instance of DatastoreService to store entity
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("title", words[0]);
     commentEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    //load comments from Datastore
-    List<String> comments = new ArrayList<>();
+    // Respond with the result.
+    response.setContentType("text/html;");
+    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");
+
+    //create instance of DatastoreService to store entity
+    
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+
     PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
+
+
+    List<String> comments = new ArrayList<>();
+
+    for (Entity entity : results.asIterable()){
         String title = (String) entity.getProperty("title");
         comments.add(title);
-    
     }
-        Gson gson = new Gson();
+       
+     Gson gson = new Gson();
 
-    response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+    response.setContentType("text/html");
+    response.getWriter().println((comments));
+    
+       
   }
+    
 
 private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
@@ -76,6 +84,13 @@ private String getParameter(HttpServletRequest request, String name, String defa
     }
     return value;
   }
-}
+ @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+     response.setContentType("application/json");
 
-   
+  }
+
+  
+
+
+}
