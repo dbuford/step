@@ -19,37 +19,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
+import java.util.Arrays;
 import com.google.gson.Gson;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns some example content. TODO: modify this file to handle comments data **/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
- ArrayList<String> messages= new ArrayList<String>();
-
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
 
-    messages.add("Black Lives Matter");
-    messages.add("Black Mental Health Matters");
-    messages.add("You Matter"); 
-    
-    String json=convertToJsonUsingGson(messages);
+    // Break the text into individual words.
+    String[] words = text.split("\\s*,\\s*");
 
-    // Send the JSON as the response
 
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
-  
-  /**
-  convert ArrayList to JSON string
-  **/
+    // Respond with the result.
 
-  private String convertToJsonUsingGson(ArrayList messages) {
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
-    return json;
+    response.setContentType("text/html;");
+    response.getWriter().println("Hi "+ words[0]+ " ! My name is Dominique, and welcome to my Portfolio");
+}
+private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
 }
+
+   
