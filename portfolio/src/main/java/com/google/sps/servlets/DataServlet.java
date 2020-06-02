@@ -18,11 +18,16 @@ import java.io.IOException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import com.google.gson.Gson;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data **/
@@ -33,23 +38,37 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
-
-    //create instance of DatastoreService to store entity
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("title", text);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-    datastore.put(commentEntity);
-
+    long timestamp = System.currentTimeMillis();
 
     // Break the text into individual words.
     String[] words = text.split("\\s*,\\s*");
 
     // Respond with the result.
     response.setContentType("text/html;");
-    response.getWriter().println("Hi "+ words[0]+ " ! My name is Dominique, and welcome to my Portfolio");
-}
+    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");
+
+    //create instance of DatastoreService to store entity
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("title", words[0]);
+    commentEntity.setProperty("timestamp", timestamp);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    //load comments from Datastore
+    List<String> comments = new ArrayList<>();
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+        String title = (String) entity.getProperty("title");
+        comments.add(title);
+    
+    }
+        Gson gson = new Gson();
+
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(comments));
+  }
+
 private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     if (value == null) {
