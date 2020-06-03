@@ -37,15 +37,18 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
-    String text = getParameter(request, "text-input", "");
+    String hobbies = getParameter(request, "hobbies-input", "");
+    String contact= getParameter(request, "contact-input", "");
     long timestamp = System.currentTimeMillis();
 
 
     // Break the text into individual words.
-    String[] words = text.split("\\s*,\\s*");
+    String[] words = contact.split("\\s*,\\s*");
 
     Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("title",title);
+    commentEntity.setProperty("body",hobbies);
+    commentEntity.setProperty("name", words[0]);
+    commentEntity.setProperty("email", words[1]);
     commentEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
@@ -57,7 +60,6 @@ public class DataServlet extends HttpServlet {
 
   }
     
-
 private String getParameter(HttpServletRequest request, String name, String defaultValue) {
     String value = request.getParameter(name);
     if (value == null) {
@@ -76,11 +78,18 @@ private String getParameter(HttpServletRequest request, String name, String defa
     PreparedQuery results = datastore.prepare(query);
 
 
-    ArrayList<String> comments = new ArrayList<>();
+    ArrayList<ArrayList> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()){
-        String title = (String) entity.getProperty("title");
-        comments.add(title);
+        String name = (String) entity.getProperty("name");
+        String email= (String) entity.getProperty("email");
+        String body= (String) entity.getProperty("body");
+        ArrayList<String> info=new ArrayList<>();
+        info.add(name);
+        info.add(email);
+        info.add(body);
+
+        comments.add(info);
     }
        
     String json=convertToJsonUsingGson(comments);
