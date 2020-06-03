@@ -42,7 +42,7 @@
      </style>
     </head>
 
-    <body>
+    <body onload=getComments()>
 
         <nav class="topnav">
             <a href="index.html"> Home </a>
@@ -52,10 +52,7 @@
             <a class="active" href="comments.html"> Comments</a>
         </nav>  
                            
- 
-      
-
-        <form action="/data" method="POST" >
+        <form action="/data" method="POST">
             <p> Please Type in Your Name and Your Favorite Color!</p>
             <textarea name="text-input"> Name, Color </textarea>
             <br><br>
@@ -64,6 +61,29 @@
         </form>
         <hr/>
 
-        <ul id="comments-list">List:</ul>
+        <li id="comments-list"></li>
      </body>
+
+     <script>
+         /**fetches data from server and prints comments to page*/
+        function getComments(){
+            fetch("/data").then(response => response.json()).then((comments) => {
+            console.log(comments.toString());
+            console.log(5+6);
+            const commentList = document.getElementById('comments-list');
+            comments.forEach((comment) => {
+                commentList.appendChild(createCommentElement(comment));
+                });
+            });
+           
+        }
+
+        /** Creates a list element to display the comment */
+        function createCommentElement(comment) {
+            const commentElement = document.createElement('li');
+            commentElement.innerText = comment;
+            return commentElement;
+        }
+    </script>
+
 </html>   
