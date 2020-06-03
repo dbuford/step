@@ -36,17 +36,32 @@ function addRandomGreeting() {
             for(let i=0; i<=4&& i<=comments.length-1;i++){
                 commentList.appendChild(createCommentElement(comments[i]));
             }
-                
-                });
-           
-           
+                }); 
         }
 
         /** Creates a list element to display the comment */
         function createCommentElement(comment) {
-            const commentElement = document.createElement('li');
-            commentElement.innerText = comment;
-            return commentElement;
+            const divElement = document.createElement('div');
+
+            const imageElement=document.createElement("img");
+            imageElement.src="/images/anon.jpg";
+            divElement.appendChild(imageElement);
+
+            const titleElement=document.createElement("h2");
+            titleElement.innerText=comment[0];
+            divElement.appendChild(titleElement);
+
+            const emailElement=document.createElement("h5");
+            emailElement.innerText='Email: ' + comment[1];
+            divElement.appendChild(emailElement);
+            const commentElement=document.createElement("p");
+            commentElement.innerText = 'Favorite Activities: '+ comment[2];
+            divElement.appendChild(commentElement);
+
+            
+            
+
+            return divElement;
         }
 
 
