@@ -36,6 +36,19 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    doGet(request,response);
+  }
+    
+
+private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+ @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
     long timestamp = System.currentTimeMillis();
@@ -50,9 +63,9 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    // Respond with the result.
+    /* Respond with the result.
     response.setContentType("text/html;");
-    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");
+    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");*/
 
     //create instance of DatastoreService to store entity
     
@@ -61,35 +74,28 @@ public class DataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
 
-    List<String> comments = new ArrayList<>();
+    ArrayList<String> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()){
         String title = (String) entity.getProperty("title");
         comments.add(title);
     }
        
-     Gson gson = new Gson();
+    String json=convertToJsonUsingGson(comments);
 
-    response.setContentType("text/html");
-    response.getWriter().println((comments));
+    // Send the JSON as the response
+
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
     
        
-  }
-    
-
-private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
-    }
-    return value;
-  }
- @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-     response.setContentType("application/json");
 
   }
-
+ private String convertToJsonUsingGson(ArrayList messages) {
+    Gson gson = new Gson();
+    String json = gson.toJson(messages);
+    return json;
+  }
   
 
 
