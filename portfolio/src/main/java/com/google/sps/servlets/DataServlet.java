@@ -36,7 +36,25 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    doGet(request,response);
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+    long timestamp = System.currentTimeMillis();
+
+
+    // Break the text into individual words.
+    String[] words = text.split("\\s*,\\s*");
+
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("title",title);
+    commentEntity.setProperty("timestamp", timestamp);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    response.setContentType("text/html");
+    
+     /* Redirect back to the HTML page.*/
+    response.sendRedirect("response.html");
+
   }
     
 
@@ -49,23 +67,7 @@ private String getParameter(HttpServletRequest request, String name, String defa
   }
  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String text = getParameter(request, "text-input", "");
-    long timestamp = System.currentTimeMillis();
-
-
-    // Break the text into individual words.
-    String[] words = text.split("\\s*,\\s*");
-
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("title", words[0]);
-    commentEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-
-    /* Respond with the result.
-    response.setContentType("text/html;");
-    response.getWriter().println("Hi "+ words[0]+ "! My name is Dominique, and welcome to my Portfolio");*/
 
     //create instance of DatastoreService to store entity
     
