@@ -7,12 +7,35 @@
     <script src="script.js"></script>
 
     <style>
+        /*style comment list*/
+        ul{
+            list-style-type:none;
+          }
+         div{
+             padding:0px;
+             border-bottom-style:solid;
+             width:50%;
+             background-color:White;
+             
+         } 
+
+         h2{
+             font-size:17px;
+             padding:0px;
+         }
+         img{
+             float:left;
+             width:60px;
+             height:60px;
+             border-radius:50%;
+         }
+
         /*style the body*/
         body {
             width:100%
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background:url(/images/pineapple.jpg);
+            background:White;
             background-size:cover;
              }
        /*style horizontal nav bar*/
@@ -53,37 +76,22 @@
         </nav>  
                            
         <form action="/data" method="POST">
-            <p> Please Type in Your Name and Your Favorite Color!</p>
-            <textarea name="text-input"> Name, Color </textarea>
-            <br><br>
+            <p> Please Type in Your Name and Email</p>
+            <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea>
+            <br>
+    
+        
+            <p> Please List Three Hobbies</p>
+            <textarea name="hobbies-input" rows="2" cols="40">Hobbie 1,Hobbie 2, Hobbie 3</textarea>
+        <br>
 
             <input type="submit" />
         </form>
         <hr/>
 
-        <li id="comments-list"></li>
+
+        <h2> Previous Comments: </h2>
+        <ul id="comments-list"></ul>
      </body>
-
-     <script>
-         /**fetches data from server and prints comments to page*/
-        function getComments(){
-            fetch("/data").then(response => response.json()).then((comments) => {
-            console.log(comments.toString());
-            console.log(5+6);
-            const commentList = document.getElementById('comments-list');
-            comments.forEach((comment) => {
-                commentList.appendChild(createCommentElement(comment));
-                });
-            });
-           
-        }
-
-        /** Creates a list element to display the comment */
-        function createCommentElement(comment) {
-            const commentElement = document.createElement('li');
-            commentElement.innerText = comment;
-            return commentElement;
-        }
-    </script>
 
 </html>   
