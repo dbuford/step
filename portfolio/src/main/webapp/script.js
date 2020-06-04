@@ -27,13 +27,11 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 /**fetches data from server and prints comments to page*/
-        function getComments(){
+        function getComments(val){
             fetch("/data").then(response => response.json()).then((comments) => {
-            console.log(comments.toString());
-            console.log(5+6);
             const commentList = document.getElementById('comments-list');
             commentList.innerHTML="";
-            for(let i=0; i<=4&& i<=comments.length-1;i++){
+            for(let i=0; i<val&& i<=comments.length-1;i++){
                 commentList.appendChild(createCommentElement(comments[i]));
             }
                 }); 
@@ -57,9 +55,6 @@ function addRandomGreeting() {
             const commentElement=document.createElement("p");
             commentElement.innerText = 'Favorite Activities: '+ comment[2];
             divElement.appendChild(commentElement);
-
-            
-            
 
             return divElement;
         }
