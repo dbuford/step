@@ -9,22 +9,23 @@
     <style>
         /*style the body*/
         body {
-            width:100%
-            margin: 0;
+            
             font-family: Arial, Helvetica, sans-serif;
             background-size:cover;
             background:url(/images/background3.jpg);
+            min-height:100vh;
             
-            height:100%;
              }
         /*style the footer*/
         footer{
         background:url(/images/pineapple.jpg);
+        
         width:100%;
         position:absolute;
         bottom:0;
         background-size:cover;
         height:20%;
+        
         }
        /*style horizontal nav bar*/
         .topnav {
@@ -52,27 +53,23 @@
                          }   
         /*placement of the image*/
         img {
-            margin:auto;
-            position:absolute;
-            top:30%;
-            right:0;
-            bottom:41%;
-            left:50%;
+            float:left;
             border-radius: 20%;
             object-fit:cover;
             }
         /*style the divider*/
-        div {
-            margin:0 auto; /*this will cause the div to be in the center*/
-            position:absolute;
-            margin: auto;
-            top: 0;
-            right: 55%;
-            bottom: 35%;
-            left: 0;
-            width: 300px;
-            height: 200px;*/
-            border: 15px black;
+        article {
+            float:left;
+            padding-top:5%;
+            padding-left:7%;
+            position:relative;
+            
+            }
+            div{
+                float:left;
+                padding-top:5%;
+                padding-left:5%;
+                position:relative;
             }
         /*style the preformatted text*/
         pre{
@@ -93,7 +90,7 @@
             <a href="comments.html"> Comments</a>
         </nav>  
       
-        <div>
+        <article>
           <h2> About Me</h2>
           <pre>
            Hi, my name is Dominique Buford. I am from Dallas, Texas, I'm a sophomore at Duke University, 
@@ -114,11 +111,14 @@
             one day use technology to help underprivileged communities in an impactful way.</pre>
 
             
-        </div>
+        </article>
+        <div>
 
-        <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=420px height=440px>  
+        <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=420px height=420px>  
+        </div>
+        <footer></footer>
 </body>
-<footer></footer>
+
     
     
 
