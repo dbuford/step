@@ -85,10 +85,15 @@ private String getParameter(HttpServletRequest request, String name, String defa
         String name = (String) entity.getProperty("name");
         String email= (String) entity.getProperty("email");
         String body= (String) entity.getProperty("body");
-        ArrayList<String> info=new ArrayList<>();
+        long myid = entity.getKey().getId();
+        Long id=new Long(myid);
+
+
+        ArrayList<Object> info=new ArrayList<>();
         info.add(name);
         info.add(email);
         info.add(body);
+        info.add(id);
 
         comments.add(info);
     }
