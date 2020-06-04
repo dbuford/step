@@ -42,6 +42,7 @@ public class DataServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
 
 
+
     // Break the text into individual words.
     String[] words = contact.split("\\s*,\\s*");
 
@@ -108,6 +109,4 @@ private String getParameter(HttpServletRequest request, String name, String defa
     return json;
   }
   
-
-
 }
