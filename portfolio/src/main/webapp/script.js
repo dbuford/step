@@ -56,8 +56,26 @@ function addRandomGreeting() {
             commentElement.innerText = 'Favorite Activities: '+ comment[2];
             divElement.appendChild(commentElement);
 
+            const deleteButtonElement = document.createElement('button');
+            deleteButtonElement.innerText = 'Delete';
+            deleteButtonElement.addEventListener('click', () => {
+            deleteComment(comment);
+
+            // Remove the task from the DOM.
+            divElement.remove();
+            });
+
+            divElement.appendChild(deleteButtonElement);
+
             return divElement;
         }
+
+        /** Tells the server to delete the task. */
+function deleteComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment[3]);
+  fetch('/delete-data', {method: 'POST', body: params});
+}
 
 
 
