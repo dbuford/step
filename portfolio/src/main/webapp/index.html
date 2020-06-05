@@ -21,11 +21,11 @@
         background:url(/images/pineapple.jpg);
         
         width:100%;
-        position:absolute;
+        
         bottom:0;
         background-size:cover;
         height:20%;
-        
+        position:fixed;
         }
        /*style horizontal nav bar*/
         .topnav {
@@ -50,7 +50,12 @@
         .topnav a.active {
         background-color: LightBlue;
         color: white;
-                         }   
+         
+                         }  
+        /*create right-aligned link*/
+        .topnav a.right{
+            float:right;
+                        }
         /*placement of the image*/
         img {
             float:left;
@@ -87,7 +92,8 @@
             <a href="favorite_things.html">Favorite Things</a>
             <a href="what_i_enjoy.html">Hobbies and Interests</a>
             <a href="interactive.html">Interactive</a>
-            <a href="comments.html"> Comments</a>
+            <a href="comments.html" class="right"> Feedback</a>
+            <a href="contact.html" class="right"> Contact</a>
         </nav>  
       
         <article>
@@ -116,7 +122,9 @@
 
         <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=420px height=420px>  
         </div>
+        
         <footer></footer>
+        
 </body>
 
     

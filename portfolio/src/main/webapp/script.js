@@ -53,7 +53,7 @@ function addRandomGreeting() {
             emailElement.innerText='Email: ' + comment[1];
             divElement.appendChild(emailElement);
             const commentElement=document.createElement("p");
-            commentElement.innerText = 'Favorite Activities: '+ comment[2];
+            commentElement.innerText = comment[2];
             divElement.appendChild(commentElement);
 
             const deleteButtonElement = document.createElement('button');
