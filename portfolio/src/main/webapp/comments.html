@@ -11,34 +11,35 @@
         ul{
             list-style-type:none;
           }
+        /*style each created divider*/
          div{
              padding:0px;
              border-bottom-style:solid;
              width:50%;
-             background:url(/images/background3.jpg); 
-         } 
-
+             background-color:White;
+            } 
+        /*style the two header texts*/
          h1{
              text-align:center;
-         }
-
+             color:CornflowerBlue;
+           }
          h2{
              font-size:17px;
              padding:0px;
-         }
+           }
+        /*style each image in the comment div*/
          img{
              float:left;
              width:60px;
              height:60px;
              border-radius:50%;
-         }
-   
+            }
         /*style the body*/
         body {
             width:100%
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background:url(/images/background3.jpg);
+            background-color:White;
             background-size:cover;
              }
        /*style horizontal nav bar*/
@@ -73,7 +74,6 @@
     </head>
 
     <body>
-
         <nav class="topnav">
             <a href="index.html"> Home </a>
             <a href="favorite_things.html">Favorite Things</a>
@@ -81,22 +81,19 @@
             <a href="interactive.html">Interactive</a>
             <a class="active right" href="comments.html">Feedback</a>
             <a href="contact.html" class="right"> Contact</a>
-        </nav>  
+        </nav>
+
          <h1> We Value Your Feedback!</h1>                  
         <form action="/data" method="POST">
             <p><b> Please Type in Your Name and Email</b></p>
-            <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea>
-            <br>
-    
-        
+            <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
+
             <p> <b>Please Enter Feedback About This Portfolio</b></p>
-            <textarea name="hobbies-input" rows="2" cols="40"></textarea>
-        <br>
+            <textarea name="hobbies-input" rows="4" cols="50"></textarea><br>
 
             <input type="submit"/>
         </form>
         <hr/>
-
 
         <h2> Previous Comments: </h2>
         <p> Enter Max Number of Comments to Display:</p>
@@ -106,5 +103,4 @@
     <footer></footer>
     </body>
     
-
 </html>   
