@@ -30,11 +30,24 @@ function addRandomGreeting() {
         function getComments(val){
             fetch("/data").then(response => response.json()).then((comments) => {
             const commentList = document.getElementById('comments-list');
-            commentList.innerHTML="";
-            for(let i=0; i<val&& i<=comments.length-1;i++){
-                commentList.appendChild(createCommentElement(comments[i]));
+            
+            if(comments.length==0){
+                const divElement=document.createElement('div');
+                const titleElement=document.createElement("h2");
+                titleElement.innerText="No Previous Comments Currently Available";
+                divElement.appendChild(titleElement);
+                commentList.appendChild(divElement);
             }
-                }); 
+            else{
+                commentList.innerHTML="";
+                for(let i=0; i<val&& i<=comments.length-1;i++){
+                commentList.appendChild(createCommentElement(comments[i]));
+            
+                }
+            }
+
+            });
+
         }
 
         /** Creates a list element to display the comment */
