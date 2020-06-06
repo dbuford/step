@@ -41,7 +41,12 @@ public class DataServlet extends HttpServlet {
     String contact= getParameter(request, "contact-input", "");
     long timestamp = System.currentTimeMillis();
 
-
+    if(contact.equals("")){
+        response.setContentType("text/html");
+        response.getWriter().println("Please enter a valid name and email");
+        return;
+    }
+    
 
     // Break the text into individual words.
     String[] words = contact.split("\\s*,\\s*");
