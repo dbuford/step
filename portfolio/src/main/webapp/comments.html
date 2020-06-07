@@ -21,7 +21,7 @@
         /*style the two header texts*/
          h1{
              text-align:center;
-             color:CornflowerBlue;
+             color:LightBlue;
            }
          h2{
              font-size:17px;
@@ -73,7 +73,7 @@
      </style>
     </head>
 
-    <body>
+    <body onload="getComments()">
         <nav class="topnav">
             <a href="index.html"> Home </a>
             <a href="favorite_things.html">Favorite Things</a>
@@ -96,8 +96,7 @@
         <hr/>
 
         <h2> Previous Comments: </h2>
-        <p> Enter Max Number of Comments to Display:</p>
-        <input type="number" id="maximum" name="comments-input" min="0" value="" onchange= "getComments(this.value)">
+        <nav id="page-number"></nav>
         <ul id="comments-list"></ul>
      
     <footer></footer>
