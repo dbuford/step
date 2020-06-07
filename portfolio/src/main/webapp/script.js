@@ -40,27 +40,18 @@ function addRandomGreeting() {
             else{
                 const pageList=document.getElementById('page-number');
                 var pagenum=1;
-                if(comments.length%5==0){
-                    for(let k=0; k<comments.length/5;k++){
-                        const pageButton=document.createElement("button");
-                        pageButton.innerText=pagenum.toString();
-                        pageList.appendChild(pageButton);
-                        pageButton.addEventListener("click",createComments(comments,pagenum));
-                        pagenum++;
+                for(let k=0; k<Math.floor(comments.length/5) +1;k++){
+                    const pageButton=document.createElement("button");
+                    pageButton.innerText=pagenum.toString();
+                    pageList.appendChild(pageButton);
+                    pageButton.addEventListener("click",createComments(comments,pagenum));
+                    if(pagenum===1){
+                       pageButton.click();
                     }
+                    pagenum++;
                 }
-            
-                
-                else{
-                    for(let k=0; k<Math.floor(comments.length/5) +1;k++){
-                        const pageButton=document.createElement("button");
-                        pageButton.innerText=pagenum.toString();
-                        pageList.appendChild(pageButton);
-                        pageButton.addEventListener("click",createComments(comments,pagenum));
-                        pagenum++;
-                    }
                     
-                    }
+                    
             }
                 
            
