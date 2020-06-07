@@ -27,9 +27,8 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 /**fetches data from server and prints comments to page*/
-        function getComments(val){
+        function getComments(){
             fetch("/data").then(response => response.json()).then((comments) => {
-            const commentList = document.getElementById('comments-list');
             
             if(comments.length==0){
                 const divElement=document.createElement('div');
@@ -39,14 +38,46 @@ function addRandomGreeting() {
                 commentList.appendChild(divElement);
             }
             else{
-                commentList.innerHTML="";
-                for(let i=0; i<val&& i<=comments.length-1;i++){
-                commentList.appendChild(createCommentElement(comments[i]));
-            
+                const pageList=document.getElementById('page-number');
+                var pagenum=1;
+                if(comments.length%5==0){
+                    for(let k=0; k<comments.length/5;k++){
+                        const pageButton=document.createElement("button");
+                        pageButton.innerText=pagenum.toString();
+                        pageList.appendChild(pageButton);
+                        pageButton.addEventListener("click",createComments(comments,pagenum));
+                        pagenum++;
+                    }
                 }
+            
+                
+                else{
+                    for(let k=0; k<Math.floor(comments.length/5) +1;k++){
+                        const pageButton=document.createElement("button");
+                        pageButton.innerText=pagenum.toString();
+                        pageList.appendChild(pageButton);
+                        pageButton.addEventListener("click",createComments(comments,pagenum));
+                        pagenum++;
+                    }
+                    
+                    }
             }
+                
+           
 
-            });
+        });
+        }
+
+
+        function createComments(comments,pagenum){
+            return function(){
+                 const commentList = document.getElementById('comments-list');
+                commentList.innerHTML="";
+                for(let i=pagenum*5-5;i<5*pagenum;i++){
+                commentList.appendChild(createCommentElement(comments[i]));
+                }
+
+            }
 
         }
 
@@ -94,4 +125,4 @@ function deleteComment(comment) {
 
 
 
-
+    
