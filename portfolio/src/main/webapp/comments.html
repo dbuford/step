@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
+    <style>
+        /*style comment list*/
+        ul{
+            list-style-type:none;
+          }
+        /*style each created divider*/
+         div{
+             padding:0px;
+             border-bottom-style:solid;
+             width:50%;
+             background-color:White;
+            } 
+        /*style the two header texts*/
+         h1{
+             text-align:center;
+             color:LightBlue;
+           }
+         h2{
+             font-size:17px;
+             padding:0px;
+           }
+        /*style each image in the comment div*/
+         img{
+             float:left;
+             width:60px;
+             height:60px;
+             border-radius:50%;
+            }
+        /*style the body*/
+        body {
+            width:100%
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color:White;
+            background-size:cover;
+             }
+       /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in nav bar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+                  }
+        /*change color of link when hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*style active link in navbar*/
+        .topnav a.active {
+        background-color: LightBlue;
+        color: white;
+                         } 
+        /*create right-aligned link*/
+        .topnav a.right{
+            float:right;
+                        }  
+     </style>
+    </head>
+
+    <body onload="getComments()">
+        <nav class="topnav">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a href="interactive.html">Interactive</a>
+            <a class="active right" href="comments.html">Feedback</a>
+            <a href="contact.html" class="right"> Contact</a>
+        </nav>
+
+         <h1> We Value Your Feedback!</h1>                  
+        <form action="/data" method="POST">
+            <p><b> Please Type in Your Name and Email</b></p>
+            <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
+
+            <p> <b>Please Enter Feedback About This Portfolio</b></p>
+            <textarea name="hobbies-input" rows="4" cols="50"></textarea><br>
+
+            <input type="submit"/>
+        </form>
+        <hr/>
+
+        <h2> Previous Comments: </h2>
+        <nav id="page-number"></nav>
+        <ul id="comments-list"></ul>
+     
+    <footer></footer>
+    </body>
+ 
+        
+    
+</html>   

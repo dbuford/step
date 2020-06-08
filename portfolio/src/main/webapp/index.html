@@ -9,12 +9,24 @@
     <style>
         /*style the body*/
         body {
-            width:100%
-            margin: 0;
+            
             font-family: Arial, Helvetica, sans-serif;
-            background:url(/images/pineapple.jpg);
             background-size:cover;
+            background:url(/images/background3.jpg);
+            min-height:100vh;
+            
              }
+        /*style the footer*/
+        footer{
+        background:url(/images/pineapple.jpg);
+        
+        width:100%;
+        
+        bottom:0;
+        background-size:cover;
+        height:20%;
+        position:fixed;
+               }
        /*style horizontal nav bar*/
         .topnav {
             overflow: hidden;
@@ -38,31 +50,33 @@
         .topnav a.active {
         background-color: LightBlue;
         color: white;
-                         }   
+         
+                         }  
+        /*create right-aligned link*/
+        .topnav a.right{
+            float:right;
+                        }
         /*placement of the image*/
         img {
-            margin:auto;
-            position:absolute;
-            top:30%;
-            right:0;
-            bottom:41%;
-            left:50%;
-            border-radius: 20%;
+            float:left;
+            border-radius: 10%;
             object-fit:cover;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             }
-        /*style the divider*/
-        div {
-            margin:0 auto; /*this will cause the div to be in the center*/
-            position:absolute;
-            margin: auto;
-            top: 0;
-            right: 55%;
-            bottom: 35%;
-            left: 0;
-            width: 300px;
-            height: 200px;*/
-            border: 15px black;
-            }
+        /*style the dividers*/
+        article {
+            float:left;
+            padding-top:7%;
+            padding-left:9%;
+            position:relative;
+            
+                }
+            div{
+                float:left;
+                padding-top:7%;
+                padding-left:5%;
+                position:relative;
+               }
         /*style the preformatted text*/
         pre{
             font-size:15px;
@@ -78,10 +92,12 @@
             <a class="active" href="index.html"> Home </a>
             <a href="favorite_things.html">Favorite Things</a>
             <a href="what_i_enjoy.html">Hobbies and Interests</a>
-            <a href="interactive.html">Something Fun</a>
+            <a href="interactive.html">Interactive</a>
+            <a href="comments.html" class="right"> Feedback</a>
+            <a href="contact.html" class="right"> Contact</a>
         </nav>  
       
-        <div>
+        <article>
           <h2> About Me</h2>
           <pre>
            Hi, my name is Dominique Buford. I am from Dallas, Texas, I'm a sophomore at Duke University, 
@@ -100,9 +116,15 @@
             that can impact the world around us. Fortunately, since technology continues to rapidly 
             evolve before our very eyes, there is always so many new things to learn.My mission is to 
             one day use technology to help underprivileged communities in an impactful way.</pre>
+
+            
+        </article>
+        <div>
+
+        <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=420px height=420px>  
         </div>
-
-        <img src="/images/pic_of_me.jpg" alt="Picture of Me" width=420px height=440px>
-
-    </body>
+        
+        <footer></footer>
+        
+</body>  
 </html>
