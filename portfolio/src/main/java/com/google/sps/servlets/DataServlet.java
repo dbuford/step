@@ -30,6 +30,19 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 
+import com.google.appengine.api.blobstore.BlobInfo;
+import com.google.appengine.api.blobstore.BlobInfoFactory;
+import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
+import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Map;
+
 /** Servlet that returns some example content. TODO: modify this file to handle comments data **/
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -40,6 +53,7 @@ public class DataServlet extends HttpServlet {
     String hobbies = getParameter(request, "hobbies-input", "");
     String contact= getParameter(request, "contact-input", "");
     long timestamp = System.currentTimeMillis();
+
 
     if(contact.equals("")){
         response.setContentType("text/html");
@@ -75,6 +89,8 @@ private String getParameter(HttpServletRequest request, String name, String defa
   }
  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     //create instance of DatastoreService to store entity
@@ -118,5 +134,7 @@ private String getParameter(HttpServletRequest request, String name, String defa
     String json = gson.toJson(messages);
     return json;
   }
-  
+
 }
+  
+
