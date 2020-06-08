@@ -84,14 +84,18 @@
         </nav>
 
          <h1> We Value Your Feedback!</h1>                  
-        <form action="/data" method="POST">
-            <p><b> Please Type in Your Name and Email</b></p>
+        <form id="my-form" method="POST" enctype="multipart/form-data">
+            <p><b> Please Type in Your Name and Email:</b></p>
             <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
 
-            <p> <b>Please Enter Feedback About This Portfolio</b></p>
+            <p> <b>Please Enter Feedback About This Portfolio:</b></p>
             <textarea name="hobbies-input" rows="4" cols="50"></textarea><br>
 
-            <input type="submit"/>
+            <p><b>Upload a profile image:</b></p>
+            <input type="file" name="image">
+            <br/><br/>
+             <button>Submit</button>
+
         </form>
         <hr/>
 

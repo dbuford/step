@@ -12,23 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
 /**fetches data from server and prints comments to page*/
         function getComments(){
-            fetch("/data").then(response => response.json()).then((comments) => {
+            fetch("/blobstore-url").then(response => response.json()).then((comments) => {
+                console.log(comments);
             
             if(comments.length==0){
                 const divElement=document.createElement('div');
@@ -69,13 +56,11 @@ function addRandomGreeting() {
                     
                     
             }
-                
-           
 
         });
+       
+   
         }
-
-
         function createComments(comments,pagenum){
             return function(){
                  const commentList = document.getElementById('comments-list');
@@ -93,8 +78,17 @@ function addRandomGreeting() {
             const divElement = document.createElement('div');
 
             const imageElement=document.createElement("img");
-            imageElement.src="/images/anon.jpg";
+            if(comment[4]===null){
+                imageElement.src="/images/anon.jpg";
+            }
+            else{
+            imageElement.src=comment[4];
+            }
             divElement.appendChild(imageElement);
+
+            const messageForm = document.getElementById('my-form');
+            messageForm.action = comment[5];
+
 
             const titleElement=document.createElement("h2");
             titleElement.innerText=comment[0];
@@ -127,6 +121,8 @@ function deleteComment(comment) {
   params.append('id', comment[3]);
   fetch('/delete-data', {method: 'POST', body: params});
 }
+
+
 
 
 
