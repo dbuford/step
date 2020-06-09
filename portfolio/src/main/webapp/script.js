@@ -14,14 +14,20 @@
 
 /**fetches data from server and prints comments to page*/
         function getComments(){
-            fetch("/blobstore-url").then(response => response.json()).then((comments) => {
-                console.log(comments);
+
+            fetch("/blobstore-url").then(response => response.json()).then((returnData) => {
+                console.log(returnData);
+                let comments=returnData.listOfComments;
+                const messageForm = document.getElementById('my-form');
+                messageForm.action = returnData.uploadUrl;
+
             
             if(comments.length==0){
                 const divElement=document.createElement('div');
                 const titleElement=document.createElement("h2");
                 titleElement.innerText="No Previous Comments Currently Available";
                 divElement.appendChild(titleElement);
+                const commentList = document.getElementById('comments-list');
                 commentList.appendChild(divElement);
             }
             else{
@@ -52,14 +58,11 @@
                         pagenum++;
                     }
                     }
-                
                     
-                    
-            }
+           }
 
         });
        
-   
         }
         function createComments(comments,pagenum){
             return function(){
@@ -78,7 +81,7 @@
             const divElement = document.createElement('div');
 
             const imageElement=document.createElement("img");
-            if(comment[4]===null){
+            if(comment[4]==null){
                 imageElement.src="/images/anon.jpg";
             }
             else{
@@ -86,8 +89,7 @@
             }
             divElement.appendChild(imageElement);
 
-            const messageForm = document.getElementById('my-form');
-            messageForm.action = comment[5];
+
 
 
             const titleElement=document.createElement("h2");
@@ -116,11 +118,11 @@
         }
 
         /** Tells the server to delete the task. */
-function deleteComment(comment) {
-  const params = new URLSearchParams();
-  params.append('id', comment[3]);
-  fetch('/delete-data', {method: 'POST', body: params});
-}
+        function deleteComment(comment) {
+            const params = new URLSearchParams();
+            params.append('id', comment[3]);
+            fetch('/delete-data', {method: 'POST', body: params});
+        }
 
 
 
