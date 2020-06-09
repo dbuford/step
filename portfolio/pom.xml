@@ -36,10 +36,11 @@
       <version>1.9.59</version>
     </dependency>
 
+
     <dependency>
-      <groupId>com.google.appengine</groupId>
-      <artifactId>appengine-api-1.0-sdk</artifactId>
-      <version>1.9.59</version>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-logging-logback</artifactId>
+      <version>0.117.0-alpha</version>
     </dependency>
 
   </dependencies>
