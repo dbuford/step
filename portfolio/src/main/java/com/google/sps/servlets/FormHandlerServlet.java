@@ -24,6 +24,7 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -47,6 +48,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
+import java.util.logging.Logger;
 
 /**
  * When the user submits the form, Blobstore processes the file upload and then forwards the request
@@ -63,6 +65,7 @@ public class FormHandlerServlet extends HttpServlet {
     String hobbies = getParameter(request, "hobbies-input", "");
     String contact= getParameter(request, "contact-input", "");
     long timestamp = System.currentTimeMillis();
+    System.out.println(hobbies);
 
     // Get the URL of the image that the user uploaded to Blobstore.
     String imageUrl = getUploadedFileUrl(request, "image");
@@ -85,14 +88,16 @@ public class FormHandlerServlet extends HttpServlet {
     commentEntity.setProperty("email", words[1]);
     commentEntity.setProperty("timestamp", timestamp);
     commentEntity.setProperty("image", imageUrl);
+   
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
+
 
     PrintWriter out = response.getWriter();
     out.println("<h1>Thank you!</h1>");
     out.println("<p> Thank you so much for submitting your Feedback. Click Below to Return Back to the Comment Page to see other responses. </p>");
     out.println("<a href=\"" +"/comments.html"+ "\">");
-    out.println("<img src=\"" +"/images/anon.jpg" + "\" />");
+    out.println("<button> Comment Page</button>");
     out.println("</a>");
 
   }
@@ -144,4 +149,7 @@ private String getParameter(HttpServletRequest request, String name, String defa
       return imagesService.getServingUrl(options);
     }
   }
+
 }
+
+

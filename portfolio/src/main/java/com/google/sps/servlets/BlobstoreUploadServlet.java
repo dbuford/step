@@ -39,10 +39,28 @@ import java.util.Map;
 @WebServlet("/blobstore-url")
 public class BlobstoreUploadServlet extends HttpServlet {
 
+    private static class ReturnData{
+        ArrayList<ArrayList<Object>> listOfComments;
+
+        String uploadUrl;
+
+        ReturnData(ArrayList<ArrayList<Object>> listOfComments,String uploadUrl){
+            this.listOfComments=listOfComments;
+            this.uploadUrl=uploadUrl;
+        }
+    }
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+    
     String uploadUrl = blobstoreService.createUploadUrl("/my-form-handler");
+
+
+    
+    
 
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -54,7 +72,7 @@ public class BlobstoreUploadServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
 
-    ArrayList<ArrayList> comments = new ArrayList<>();
+    ArrayList<ArrayList<Object>> comments = new ArrayList<>();
 
     for (Entity entity : results.asIterable()){
         String name = (String) entity.getProperty("name");
@@ -62,7 +80,6 @@ public class BlobstoreUploadServlet extends HttpServlet {
         String body= (String) entity.getProperty("body");
         long myid = entity.getKey().getId();
         String url= (String) entity.getProperty("image");
-        String url2=uploadUrl;
         Long id=new Long(myid);
 
 
@@ -72,12 +89,12 @@ public class BlobstoreUploadServlet extends HttpServlet {
         info.add(body);
         info.add(id);
         info.add(url);
-        info.add(url2);
 
         comments.add(info);
     }
-       
-    String json=convertToJsonUsingGson(comments);
+    ReturnData returnData=new ReturnData(comments,uploadUrl); 
+    Gson gson= new Gson(); 
+    String json=gson.toJson(returnData);
 
     // Send the JSON as the response
 
