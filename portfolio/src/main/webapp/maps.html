@@ -8,32 +8,112 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
+        height: 60%;
         width:50%;
         margin-left:25%;
-        margin-top:10%;
+        margin-top:5%;
       }
-            /* Optional: Makes the sample page fill the window. */
+    /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
         padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
       }
+      h1, p{
+          text-align:center;
+      }
+      /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in nav bar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+                  }
+        /*change color of link when hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*style active link in navbar*/
+        .topnav a.active {
+        background-color: LightBlue;
+        color: white;
+                         } 
+        /*create right-aligned link*/
+        .topnav a.right{
+            float:right;
+                        }
+    
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }  
 
     </style>
   </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.0902, lng: 95.7129},
-          zoom: 3
-        });
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxoevabR4lTfgRCrfJ358PJj5TCeOwTXM&callback=initMap"
-    async defer></script>
+  <body onload="createMap();">
+      <nav class="topnav">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a href="interactive.html">Interactive</a>
+            <a class ="active" href="maps.html"> Map It </a>
+            <a class="right" href="comments.html">Feedback</a>
+            <a href="contact.html" class="right"> Contact</a>
+        </nav>
+        <h1>Map It!</h1>
+        <p> I'm always looking for new places to go, new restaurants to try, and new fun places to hang.<br> 
+        Down below, search and mark some of your favorite places so that I can add them to my bucket list!</p>
+
+        <input id="pac-input" name="address" class="controls" type="text" placeholder="Search Box">
+        <div id="map"></div>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxoevabR4lTfgRCrfJ358PJj5TCeOwTXM&libraries=places&callback=initAutocomplete""></script>
+    <script src="script.js"></script>
   </body>
 </html>

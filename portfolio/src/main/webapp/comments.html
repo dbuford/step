@@ -69,7 +69,8 @@
         /*create right-aligned link*/
         .topnav a.right{
             float:right;
-                        }  
+                        } 
+                         
      </style>
     </head>
 
@@ -79,6 +80,7 @@
             <a href="favorite_things.html">Favorite Things</a>
             <a href="what_i_enjoy.html">Hobbies and Interests</a>
             <a href="interactive.html">Interactive</a>
+            <a href="maps.html"> Map It </a>
             <a class="active right" href="comments.html">Feedback</a>
             <a href="contact.html" class="right"> Contact</a>
         </nav>
@@ -88,8 +90,11 @@
             <p><b> Please Type in Your Name and Email:</b></p>
             <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
 
-            <p> <b>Please Enter Feedback About This Portfolio:</b></p>
-            <textarea name="hobbies-input" rows="4" cols="50"></textarea><br>
+            <p> <b>Please Enter Feedback About This Portfolio then Select a Language:</b></p>
+            
+            <textarea id="feedback" name="hobbies-input" rows="4" cols="50"></textarea><br>
+
+            
 
             <p><b>Upload a profile image:</b></p>
             <input type="file" name="image">
@@ -105,7 +110,25 @@
      
     <footer></footer>
     </body>
- 
-        
+
+<script>
+      /*function requestTranslation() {
+        const feedback = document.getElementById('feedback').value;
+        const languageCode = document.getElementById('language').value;
+
+
+        const params = new URLSearchParams();
+        params.append('feedback', feedback);
+        params.append('languageCode', languageCode);
+
+        fetch('/translate', {
+          method: 'POST',
+          body: params
+        }).then(response => response.text())
+        .then((translatedMessage) => {
+          feedback.innerHTML = translatedMessage;
+        });
+      }
+    </script>       
     
 </html>   
