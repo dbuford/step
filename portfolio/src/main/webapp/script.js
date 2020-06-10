@@ -57,8 +57,7 @@
                         }
                         pagenum++;
                     }
-                    }
-                    
+                    }    
            }
 
         });
@@ -88,9 +87,6 @@
             imageElement.src=comment[4];
             }
             divElement.appendChild(imageElement);
-
-
-
 
             const titleElement=document.createElement("h2");
             titleElement.innerText=comment[0];
@@ -123,6 +119,147 @@
             params.append('id', comment[3]);
             fetch('/delete-data', {method: 'POST', body: params});
         }
+
+let map;
+
+/* Editable marker that displays when a user clicks in the map. */
+let editMarker;
+
+/** Creates a map that allows users to add markers. */
+function createMap() {
+  map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 38.5949, lng: -94.8923}, zoom: 4});
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
+      }
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+  map.addListener('click', (event) => {
+    createMarkerForEdit(event.latLng.lat(), event.latLng.lng());
+  });
+  fetchMarkers();
+}
+
+/** Fetches markers from the backend and adds them to the map. */
+function fetchMarkers() {
+  fetch('/markers').then(response => response.json()).then((markers) => {
+    markers.forEach(
+        (marker) => {
+           
+            createMarkerForDisplay(marker.lat, marker.lng, marker.content)});
+            
+  });
+}
+
+/** Creates a marker that shows a read-only info window when clicked. */
+function createMarkerForDisplay(lat, lng, content, address) {
+if(address!=null){
+    content=content+"<br>"+ address;
+}
+  const marker =
+      new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
+
+  const infoWindow = new google.maps.InfoWindow({content: content});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+    map.setZoom(10);
+    map.setCenter(marker.getPosition());
+  });
+}
+
+/** Sends a marker to the backend for saving. */
+function postMarker(lat, lng, content, address) {
+  const params = new URLSearchParams();
+  params.append('lat', lat);
+  params.append('lng', lng);
+  params.append('content', content);
+  params.append('address', address);
+
+  fetch('/markers', {method: 'POST', body: params});
+}
+
+/** Creates a marker that shows a textbox the user can edit. */
+function createMarkerForEdit(lat, lng) {
+  // If we're already showing an editable marker, then remove it.
+  if (editMarker) {
+    editMarker.setMap(null);
+  }
+
+  editMarker =
+      new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
+
+  const infoWindow =
+      new google.maps.InfoWindow({content: buildInfoWindowInput(lat, lng)});
+
+  // When the user closes the editable info window, remove the marker.
+  google.maps.event.addListener(infoWindow, 'closeclick', () => {
+    editMarker.setMap(null);
+  });
+
+  infoWindow.open(map, editMarker);
+}
+
+/**
+ * Builds and returns HTML elements that show an editable textbox and a submit
+ * button.
+ */
+function buildInfoWindowInput(lat, lng) {
+  const textBox = document.createElement('textarea');
+  const address= document.getElementById('pac-input');
+  const button = document.createElement('button');
+  button.appendChild(document.createTextNode('Submit'));
+
+  console.log(address.value);
+
+  button.onclick = () => {
+    postMarker(lat, lng, textBox.value, address.value);
+    createMarkerForDisplay(lat, lng, textBox.value, address.value);
+    editMarker.setMap(null);
+  };
+
+  const containerDiv = document.createElement('div');
+  containerDiv.appendChild(textBox);
+  containerDiv.appendChild(document.createElement('br'));
+  containerDiv.appendChild(button);
+
+  return containerDiv;
+}
+
 
 
 
