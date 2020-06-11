@@ -53,8 +53,9 @@ public class MarkerServlet extends HttpServlet {
     double lat = Double.parseDouble(request.getParameter("lat"));
     double lng = Double.parseDouble(request.getParameter("lng"));
     String content = Jsoup.clean(request.getParameter("content"), Whitelist.none());
+    String address=request.getParameter("address");
 
-    Marker marker = new Marker(lat, lng, content);
+    Marker marker = new Marker(lat, lng, content, address);
     storeMarker(marker);
   }
 
@@ -70,10 +71,11 @@ public class MarkerServlet extends HttpServlet {
       double lat = (double) entity.getProperty("lat");
       double lng = (double) entity.getProperty("lng");
       String content = (String) entity.getProperty("content");
+      String address= (String) entity.getProperty("address");
      
      
 
-      Marker marker = new Marker(lat, lng, content);
+      Marker marker = new Marker(lat, lng, content, address);
       markers.add(marker);
     }
     return markers;
@@ -85,6 +87,7 @@ public class MarkerServlet extends HttpServlet {
     markerEntity.setProperty("lat", marker.getLat());
     markerEntity.setProperty("lng", marker.getLng());
     markerEntity.setProperty("content", marker.getContent());
+    markerEntity.setProperty("address", marker.getAddress());
     
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
