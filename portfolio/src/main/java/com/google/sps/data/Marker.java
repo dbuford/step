@@ -20,13 +20,15 @@ public class Marker {
   private final double lat;
   private final double lng;
   private final String content;
+  private final String address;
   
  
 
-  public Marker(double lat, double lng, String content) {
+  public Marker(double lat, double lng, String content, String address) {
     this.lat = lat;
     this.lng = lng;
     this.content = content;
+    this.address=address;
   }
 
   public double getLat() {
@@ -41,6 +43,9 @@ public class Marker {
     return content;
   }
 
+  public String getAddress(){
+      return address;
+  }
 
 
 }
