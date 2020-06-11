@@ -26,13 +26,16 @@
          h2{
              font-size:17px;
              padding:0px;
+             
            }
         /*style each image in the comment div*/
          img{
              float:left;
-             width:60px;
-             height:60px;
-             border-radius:50%;
+             width:90px;
+             height:90px;
+             border-radius:20%;
+             padding-right:5px;
+             
             }
         /*style the body*/
         body {
@@ -70,6 +73,22 @@
         .topnav a.right{
             float:right;
                         } 
+        textarea{
+            background-color:LightBlue;
+            opacity: 0.6;
+            border-radius:5px;
+            margin-left: 35%;
+               }
+        .textarea1{
+            margin-left:40%;
+                  }
+        .title1{
+            margin-left:46%;
+        }
+        .textarea2{
+            margin-left:34%;
+        }
+
                          
      </style>
     </head>
@@ -87,19 +106,19 @@
 
          <h1> We Value Your Feedback!</h1>                  
         <form id="my-form" method="POST" enctype="multipart/form-data">
-            <p><b> Please Type in Your Name and Email:</b></p>
-            <textarea name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
+            <p class="title1"><b> Name and Email:</b></p>
+            <textarea class="textarea1" name="contact-input" rows="2" cols="40"> Name,Email</textarea><br>
 
-            <p> <b>Please Enter Feedback About This Portfolio then Select a Language:</b></p>
+            <p style="margin-left:43%"> <b>Feedback About This Portfolio:</b></p>
             
-            <textarea id="feedback" name="hobbies-input" rows="4" cols="50"></textarea><br>
+            <textarea class="textarea2" id="feedback" name="hobbies-input" rows="7" cols="65"></textarea><br>
 
             
 
-            <p><b>Upload a profile image:</b></p>
-            <input type="file" name="image">
+            <p style="margin-left:45%"><b>Upload a profile image:</b></p>
+            <input style="margin-left:45%" type="file" name="image">
             <br/><br/>
-             <button>Submit</button>
+             <button style="margin-left:46%">Submit</button>
 
         </form>
         <hr/>
@@ -110,25 +129,5 @@
      
     <footer></footer>
     </body>
-
-<script>
-      /*function requestTranslation() {
-        const feedback = document.getElementById('feedback').value;
-        const languageCode = document.getElementById('language').value;
-
-
-        const params = new URLSearchParams();
-        params.append('feedback', feedback);
-        params.append('languageCode', languageCode);
-
-        fetch('/translate', {
-          method: 'POST',
-          body: params
-        }).then(response => response.text())
-        .then((translatedMessage) => {
-          feedback.innerHTML = translatedMessage;
-        });
-      }
-    </script>       
     
 </html>   
