@@ -95,6 +95,8 @@
             const emailElement=document.createElement("h5");
             emailElement.innerText='Email: ' + comment[1];
             divElement.appendChild(emailElement);
+            const breakElement=document.createElement("br");
+            divElement.appendChild(breakElement);
             const commentElement=document.createElement("p");
             commentElement.innerText = comment[2];
             divElement.appendChild(commentElement);
@@ -140,7 +142,6 @@ function createMap() {
     searchBox.setBounds(map.getBounds());
   });
 
-  var markers = [];
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener('places_changed', function() {
@@ -149,8 +150,6 @@ function createMap() {
     if (places.length == 0) {
       return;
     }
-
-
 
     // For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
@@ -181,25 +180,26 @@ function fetchMarkers() {
     markers.forEach(
         (marker) => {
            
-            createMarkerForDisplay(marker.lat, marker.lng, marker.content)});
-            
-  });
+        createMarkerForDisplay(marker.lat, marker.lng, marker.content, marker.address);
+        createListForDisplay(marker.content,marker.address)});
+
+});
 }
 
 /** Creates a marker that shows a read-only info window when clicked. */
 function createMarkerForDisplay(lat, lng, content, address) {
-if(address!=null){
-    content=content+"<br>"+ address;
-}
   const marker =
       new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
 
-  const infoWindow = new google.maps.InfoWindow({content: content});
+      content= "<b>"+ content+ "</b>" + "<br>" + address;
+
+  const infoWindow = new google.maps.InfoWindow({ content:content});
   marker.addListener('click', () => {
     infoWindow.open(map, marker);
-    map.setZoom(10);
+    map.setZoom(9);
     map.setCenter(marker.getPosition());
   });
+ 
 }
 
 /** Sends a marker to the backend for saving. */
@@ -208,7 +208,9 @@ function postMarker(lat, lng, content, address) {
   params.append('lat', lat);
   params.append('lng', lng);
   params.append('content', content);
-  params.append('address', address);
+  params.append('address',address);
+  
+ 
 
   fetch('/markers', {method: 'POST', body: params});
 }
@@ -240,17 +242,24 @@ function createMarkerForEdit(lat, lng) {
  */
 function buildInfoWindowInput(lat, lng) {
   const textBox = document.createElement('textarea');
-  const address= document.getElementById('pac-input');
   const button = document.createElement('button');
   button.appendChild(document.createTextNode('Submit'));
 
-  console.log(address.value);
+  var geocoder = new google.maps.Geocoder;
+  var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+     
+
+ 
 
   button.onclick = () => {
-    postMarker(lat, lng, textBox.value, address.value);
-    createMarkerForDisplay(lat, lng, textBox.value, address.value);
+    postMarker(lat, lng, textBox.value, results[0].formatted_address);
+    createMarkerForDisplay(lat, lng, textBox.value, results[0].formatted_address);
+    createListForDisplay(textBox.value, results[0].formatted_address);
+    
     editMarker.setMap(null);
   };
+});
 
   const containerDiv = document.createElement('div');
   containerDiv.appendChild(textBox);
@@ -259,6 +268,17 @@ function buildInfoWindowInput(lat, lng) {
 
   return containerDiv;
 }
+
+function createListForDisplay(text,address){
+    const containerDiv=document.createElement('div');
+    const textElement=document.createElement('h4');
+    textElement.innerText=text;
+    containerDiv.appendChild(textElement);
+    const List= document.getElementById('bucket-list');
+    List.appendChild(containerDiv);
+}
+
+
 
 
 
