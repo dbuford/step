@@ -21,7 +21,6 @@
                 const messageForm = document.getElementById('my-form');
                 messageForm.action = returnData.uploadUrl;
 
-            
             if(comments.length==0){
                 const divElement=document.createElement('div');
                 const titleElement=document.createElement("h2");
@@ -44,7 +43,6 @@
                      }
                     pagenum++;
                 }
-
                 }
                 else{
                     for(let k=0; k<Math.floor(comments.length/5)+1;k++){
@@ -59,10 +57,9 @@
                     }
                     }    
            }
-
         });
-       
         }
+
         function createComments(comments,pagenum){
             return function(){
                  const commentList = document.getElementById('comments-list');
@@ -70,9 +67,7 @@
                 for(let i=pagenum*5-5;i<5*pagenum;i++){
                 commentList.appendChild(createCommentElement(comments[i]));
                 }
-
             }
-
         }
 
         /** Creates a list element to display the comment */
@@ -109,9 +104,7 @@
             // Remove the task from the DOM.
             divElement.remove();
             });
-
             divElement.appendChild(deleteButtonElement);
-
             return divElement;
         }
 
@@ -174,15 +167,13 @@ function createMap() {
   fetchMarkers();
 }
 
-/** Fetches markers from the backend and adds them to the map. */
+/** Fetches markers from the backend and adds them to the map, creates list element in bucket list. */
 function fetchMarkers() {
   fetch('/markers').then(response => response.json()).then((markers) => {
     markers.forEach(
-        (marker) => {
-           
+        (marker) => { 
         createMarkerForDisplay(marker.lat, marker.lng, marker.content, marker.address);
         createListForDisplay(marker.content,marker.address)});
-
 });
 }
 
@@ -199,7 +190,6 @@ function createMarkerForDisplay(lat, lng, content, address) {
     map.setZoom(9);
     map.setCenter(marker.getPosition());
   });
- 
 }
 
 /** Sends a marker to the backend for saving. */
@@ -210,8 +200,6 @@ function postMarker(lat, lng, content, address) {
   params.append('content', content);
   params.append('address',address);
   
- 
-
   fetch('/markers', {method: 'POST', body: params});
 }
 
@@ -249,8 +237,6 @@ function buildInfoWindowInput(lat, lng) {
   var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
   geocoder.geocode({'location': latlng}, function(results, status) {
      
-
- 
 
   button.onclick = () => {
     postMarker(lat, lng, textBox.value, results[0].formatted_address);
