@@ -15,9 +15,72 @@
 package com.google.sps;
 
 import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    throw new UnsupportedOperationException("TODO: Implement this method.");
+    
+    //return empty list if meeting duration is longer than a day
+    if(request.getDuration()>TimeRange.WHOLE_DAY.duration()){
+        return Arrays.asList();
+    }
+    //return full day available if there are no meeting attendees
+    if(request.getAttendees().isEmpty()){
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+    //return full day available if there are no conflicts
+    if(events.isEmpty()){
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+    }
+
+//for each event, create two TimeRange objects that split the day into two, before and after meeting
+    ArrayList<TimeRange> list=new ArrayList<TimeRange>();
+
+    for(Event event:events){
+      if(request.getAttendees().contains(String.join(" ",event.getAttendees()))){
+            list.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(),false));
+          
+            list.add(TimeRange.fromStartEnd(event.getWhen().end(),TimeRange.END_OF_DAY,true));
+      }
+      //return full day if no attendees in the meeting request have an event
+      if(list.size()==0){
+          return Arrays.asList(TimeRange.WHOLE_DAY);
+      }
+    }
+
+    ArrayList<TimeRange> finalList=new ArrayList<TimeRange>();
+
+    Collections.sort(list,TimeRange.ORDER_BY_START);
+
+    for(TimeRange timerange:list){
+        boolean overlap=Overlap(timerange, events, finalList, request);
+        if(overlap==false&& timerange.duration()>=request.getDuration()&& finalList.contains(timerange)==false){
+            finalList.add(timerange);
+        }
+    }
+    return finalList;
+  }
+  /*
+  helper function that determines whether any scheduled timerange overlaps with an event
+  returns true if current timerange overlaps with event, otherwise false
+  */
+  public boolean Overlap(TimeRange timerange, Collection<Event> events, ArrayList<TimeRange> list, MeetingRequest request){
+      boolean overlap=false;
+      for(Event event:events){
+          if(timerange.overlaps(event.getWhen())){
+              if(timerange.end()> event.getWhen().end()&& list.contains(timerange)==false){
+                TimeRange updatedTimeRange=TimeRange.fromStartEnd(event.getWhen().end(),timerange.end(),false);
+                if(updatedTimeRange.duration()>=request.getDuration()){
+                    list.add(updatedTimeRange);
+                }
+              }
+            overlap=true;
+          }
+      }
+      return overlap;
   }
 }
+
