@@ -92,13 +92,7 @@ public class FormHandlerServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-
-    PrintWriter out = response.getWriter();
-    out.println("<h1>Thank you!</h1>");
-    out.println("<p> Thank you so much for submitting your Feedback. Click Below to Return Back to the Comment Page to see other responses. </p>");
-    out.println("<a href=\"" +"/comments.html"+ "\">");
-    out.println("<button> Comment Page</button>");
-    out.println("</a>");
+    response.sendRedirect("/comments.html");
 
   }
     

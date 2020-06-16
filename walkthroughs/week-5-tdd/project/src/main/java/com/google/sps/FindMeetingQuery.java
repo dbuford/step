@@ -27,8 +27,8 @@ public final class FindMeetingQuery {
     if(request.getDuration()>TimeRange.WHOLE_DAY.duration()){
         return Arrays.asList();
     }
-    //return full day available if there are no meeting attendees
-    if(request.getAttendees().isEmpty()){
+    //return full day available if there are no meeting attendees, including optional
+    if(request.getAttendees().isEmpty()&& request.getOptionalAttendees().isEmpty()){
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
     //return full day available if there are no conflicts
@@ -36,21 +36,25 @@ public final class FindMeetingQuery {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     }
 
-//for each event, create two TimeRange objects that split the day into two, before and after meeting
+    //for each event, create two TimeRange objects that split the day into two, before and after meeting
     ArrayList<TimeRange> list=new ArrayList<TimeRange>();
 
-    for(Event event:events){
-      if(request.getAttendees().contains(String.join(" ",event.getAttendees()))){
-            list.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(),false));
-          
-            list.add(TimeRange.fromStartEnd(event.getWhen().end(),TimeRange.END_OF_DAY,true));
-      }
-      //return full day if no attendees in the meeting request have an event
-      if(list.size()==0){
-          return Arrays.asList(TimeRange.WHOLE_DAY);
-      }
+    if(!request.getAttendees().isEmpty()){
+        CreateTimeOptions(list,events,request.getAttendees());
     }
 
+    //creates timeranges based on optional attendees events if no mandatory attendees
+    else{
+        CreateTimeOptions(list,events,request.getOptionalAttendees());
+    }
+    
+
+    //return full day if no attendees in the meeting request have an event
+      if(list.size()==0){
+        return Arrays.asList(TimeRange.WHOLE_DAY);
+      }
+   
+    //create new list that considers overlapping conflicts
     ArrayList<TimeRange> finalList=new ArrayList<TimeRange>();
 
     Collections.sort(list,TimeRange.ORDER_BY_START);
@@ -69,18 +73,45 @@ public final class FindMeetingQuery {
   */
   public boolean Overlap(TimeRange timerange, Collection<Event> events, ArrayList<TimeRange> list, MeetingRequest request){
       boolean overlap=false;
+
       for(Event event:events){
-          if(timerange.overlaps(event.getWhen())){
-              if(timerange.end()> event.getWhen().end()&& list.contains(timerange)==false){
+          //checks to see if all day event is from optional attendee. If so, does not alter overlapping timerange
+          if(request.getOptionalAttendees().contains(String.join(" ",event.getAttendees()))&& event.getWhen().duration()>=TimeRange.WHOLE_DAY.duration()){
+            continue;
+          }
+          else{
+            if(timerange.overlaps(event.getWhen())){
+            //checks to see if timerange ends after event. If so, alters timerange start to the end of the event
+            //to account for overlap
+              if(timerange.end()> event.getWhen().end()){
+                  //if overlapping event is from optional attendee and altered timerange will have smaller
+                  //duration than requested time, do not alter timerange
+                  if(request.getOptionalAttendees().contains(String.join(" ",event.getAttendees()))&&timerange.end()-event.getWhen().end()<request.getDuration()){
+                    continue;
+                }
                 TimeRange updatedTimeRange=TimeRange.fromStartEnd(event.getWhen().end(),timerange.end(),false);
-                if(updatedTimeRange.duration()>=request.getDuration()){
-                    list.add(updatedTimeRange);
+                
+                if(Overlap(updatedTimeRange,events,list,request)==false&& updatedTimeRange.duration()>=request.getDuration()&& list.contains(updatedTimeRange)==false){
+                    list.add(updatedTimeRange);   
                 }
               }
             overlap=true;
           }
+          }    
       }
       return overlap;
   }
+  /*
+  helper function that creates two new TimeRanges, before and after event and adds them to list 
+  */
+  public void CreateTimeOptions(ArrayList<TimeRange> list,Collection<Event> events,Collection<String> attendees){
+    for(Event event:events){
+      if(attendees.contains(String.join(" ",event.getAttendees()))){
+            list.add(TimeRange.fromStartEnd(TimeRange.START_OF_DAY, event.getWhen().start(),false));
+            list.add(TimeRange.fromStartEnd(event.getWhen().end(),TimeRange.END_OF_DAY,true));
+        }
+    }
+  }
+
 }
 
