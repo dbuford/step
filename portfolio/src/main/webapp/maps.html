@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 60%;
+        width:60%;
+        margin-top:3%;
+        border:solid Purple;
+        border-width:thick;
+      }
+    /* Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+
+                  }
+      h1, p{
+          text-align:center;
+           }
+      /*style horizontal nav bar*/
+        .topnav {
+            overflow: hidden;
+            background-color: White;
+                }
+        /*style links in nav bar*/
+        .topnav a {
+            float: left;
+            color: Black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+                  }
+        /*change color of link when hovered on*/
+        .topnav a:hover {
+            background-color: LightPink;
+            color: White;
+                        }
+        /*style active link in navbar*/
+        .topnav a.active {
+        background-color: LightBlue;
+        color: white;
+                         } 
+        /*create right-aligned link*/
+        .topnav a.right{
+            float:right;
+                       }
+    /*style the search bar in the map*/
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+                }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+                     }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+                    }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+                          }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+                 }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+                       }  
+    /*style the bucket list*/
+      #bucket-list{
+       margin-left:30px;
+       margin-top:3% ; 
+       float:left;
+       width:30%;
+       max-height:60%;
+       overflow: auto;
+       border: 5px dotted Purple;
+       border-radius: 19px;
+       margin-right:20px;
+       background-color:lavender;
+                  }
+    h4{
+        text-align:center;
+      }
+
+    </style>
+  </head>
+  
+      <nav class="topnav" style="border-bottom:solid Purple;">
+            <a href="index.html"> Home </a>
+            <a href="favorite_things.html">Favorite Things</a>
+            <a href="what_i_enjoy.html">Hobbies and Interests</a>
+            <a href="interactive.html">Interactive</a>
+            <a class ="active" href="maps.html"> Map It </a>
+            <a class="right" href="comments.html">Feedback</a>
+            <a href="contact.html" class="right"> Contact</a>
+      </nav>
+
+        <body onload="createMap();">
+        <h1>Map It!</h1>
+        <p> I'm always looking for new places to go, new restaurants to try, and new fun places to hang.<br> 
+        Down below, search and mark some of your favorite places so that I can add them to my bucket list!</p>
+
+        <input id="pac-input" name="address" class="controls" type="text" placeholder="Search Box">
+        <div id="bucket-list"> 
+            <h4 style="text-align:center; margin-bottom:0px;"> Dominique's </h4>
+            <h2 style="text-align:center; margin-top:0px; font-family: 'Berkshire Swash', cursive; font-size:50px">
+            Bucket List</h2></div>
+
+        <div style="float:left;" id="map"></div>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxoevabR4lTfgRCrfJ358PJj5TCeOwTXM&libraries=places&callback=initAutocomplete"></script>
+    <script src="script.js"></script>
+    
+  </body>
+</html>
